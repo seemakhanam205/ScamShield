@@ -12,4 +12,4 @@ SessionLocal=sessionmaker(
     autocommit=False,
     bind=engine
 )
-base = declarative_base()
+Base = declarative_base()
