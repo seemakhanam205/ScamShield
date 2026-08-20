@@ -17,4 +17,4 @@ class UserResponse(BaseModel):
 
 class Token(BaseModel):
     access_token:str
-    token_types:str="bearer"
+    token_type:str="bearer"
