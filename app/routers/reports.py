@@ -6,9 +6,10 @@ from app.db.models import User
 from app.schemas.report import ReportCreate, ReportResponse
 from app.services import report_services
 
-report_router=APIRouter(prefix="/reports",tags=["Reports"])
+reports_router=APIRouter(prefix="/reports",tags=["Reports"])
 
-@report_router.post("/new",response_model=ReportResponse, status_code=status.HTTP_201_CREATED)
+
+@reports_router.post("/new",response_model=ReportResponse, status_code=status.HTTP_201_CREATED)
 def create_new_report(
     report_data:ReportCreate,
     db:Session=Depends(get_db),
@@ -19,7 +20,7 @@ def create_new_report(
         db=db, report_data=report_data, user_id=current_user.id
     )
 
-@report_router.get("/me", response_model=list[ReportResponse])
+@reports_router.get("/me", response_model=list[ReportResponse])
 def get_my_reports(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -28,7 +29,7 @@ def get_my_reports(
     return report_services.get_user_reports(db=db, user_id=current_user.id)
 
 
-@report_router.get("/{report_id}", response_model=ReportResponse)
+@reports_router.get("/{report_id}", response_model=ReportResponse)
 def get_report(
     report_id: int,
     db: Session = Depends(get_db),

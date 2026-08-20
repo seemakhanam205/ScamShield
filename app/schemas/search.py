@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict
 from app.schemas.report import ReportResponse
 from typing import List
 class EntitySearchResult(BaseModel):
-    id:str
+    id:int
     type: str
     value:str
     report_count:int
