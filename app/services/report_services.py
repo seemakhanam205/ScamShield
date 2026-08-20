@@ -18,7 +18,7 @@ def create_report(db:Session, report_data:ReportCreate, user_id:int)->Report:
     db.refresh(new_report)
 
     # 2. Process attached entites (PHONE, UPI, URL, EMAIL)
-    for entity_in in report_data.entites:
+    for entity_in in report_data.entities:
         ent_type=entity_in.type.strip().upper()
         ent_value=entity_in.value.strip().lower()
 
